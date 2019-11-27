@@ -7,3 +7,4 @@ TODO.md
 .vscode
 Exponent-*.app
 *.log
+/dist
