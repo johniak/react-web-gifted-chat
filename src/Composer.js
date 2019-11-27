@@ -40,19 +40,11 @@ export default class Composer extends React.Component {
   render() {
     return (
       <textarea
-        testID={this.props.placeholder}
-        accessible
         onKeyDown={e => this.onKeyDown(e)}
-        accessibilityLabel={this.props.placeholder}
         placeholder={this.props.placeholder}
-        placeholderTextColor={this.props.placeholderTextColor}
-        multiline={this.props.multiline}
         onChange={event => this.onChangeText(event.target.value)}
         style={{ ...styles.textInput, ...this.props.textInputStyle }}
         value={this.props.text}
-        enablesReturnKeyAutomatically
-        underlineColorAndroid="transparent"
-        keyboardAppearance={this.props.keyboardAppearance}
         {...this.props.textInputProps}
       />
     );
