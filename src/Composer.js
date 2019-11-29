@@ -30,7 +30,10 @@ export default class Composer extends React.Component {
 
   onKeyDown(e) {
     const { text, onSend } = this.props;
-    if (e.keyCode === 13 && e.shiftKey === false) {
+    const numberOfLineBreaks = (text.match(/\n/g)||[]).length;
+    const characterCount = text.length - numberOfLineBreaks;
+
+    if (e.keyCode === 13 && e.shiftKey === false && characterCount > 0) {
       onSend({ text: text.trim() }, true);
       e.preventDefault();
     }
