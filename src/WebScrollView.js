@@ -10,23 +10,16 @@ export default class WebScrollView extends Component {
   }
 
   render() {
-    const {
-      ListHeaderComponent,
-      ListFooterComponent,
-      data,
-      inverted,
-    } = this.props;
+    const { ListHeaderComponent, ListFooterComponent, data, inverted } = this.props;
     let messages = data;
     if (!inverted) {
       messages = data.slice().reverse();
     }
     return (
       <div style={styles.container}>
-        <div style={styles.innerContainer}>
-          {ListHeaderComponent()}
-          {messages.map(this.renderItem)}
-          {ListFooterComponent()}
-        </div>
+        {ListHeaderComponent()}
+        {messages.map(this.renderItem)}
+        {ListFooterComponent()}
       </div>
     );
   }
@@ -38,15 +31,10 @@ const styles = {
     minHeight: '100%',
     width: '100%',
     overflow: 'auto',
-    transform: 'rotateX(180deg)',
-  },
-  innerContainer: {
-    width: '100%',
     display: 'flex',
     flexDirection: 'column-reverse',
     flex: 1,
     alignItems: 'stretch',
-    transform: 'rotateX(180deg)',
   },
 };
 

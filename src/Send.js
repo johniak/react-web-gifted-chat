@@ -45,9 +45,9 @@ const styles = StyleSheet.create({
 Send.defaultProps = {
   text: '',
   onSend: () => {},
+  btnSendStyle: {},
   label: 'Send',
   containerStyle: {},
-  btnSendStyle: {},
   textStyle: {},
   children: null,
   alwaysShowSend: false,
