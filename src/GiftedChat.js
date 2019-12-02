@@ -53,7 +53,7 @@ class GiftedChat extends React.Component {
 
     this.state = {
       isInitialized: false, // initialization will calculate maxHeight before rendering the chat
-      composerHeight: 40,
+      composerHeight: props.composerHeight ?  props.composerHeight : 40,
       typingDisabled: false,
     };
 
