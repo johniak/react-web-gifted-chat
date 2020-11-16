@@ -28,8 +28,8 @@ export default class MessageImage extends React.Component {
       return {};
     }
     const { imageMessages, currentMessage } = props;
-    const messagesIds = imageMessages.map(item => item.id);
-    const messageIndex = messagesIds.indexOf(currentMessage.id);
+    const messagesIds = imageMessages.map(item => item._id);
+    const messageIndex = messagesIds.indexOf(currentMessage._id);
     return { messageIndex };
   }
 

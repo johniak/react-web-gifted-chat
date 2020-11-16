@@ -106,7 +106,7 @@ export default class Bubble extends React.Component {
     if (this.props.renderTicks) {
       return this.props.renderTicks(currentMessage);
     }
-    if (currentMessage.user.id !== this.props.user.id) {
+    if (currentMessage.user._id !== this.props.user._id) {
         return;
     }
     if (currentMessage.sent || currentMessage.received || currentMessage.pending) {
@@ -135,7 +135,7 @@ export default class Bubble extends React.Component {
   renderUsername() {
     const { currentMessage } = this.props;
     if (this.props.renderUsernameOnMessage) {
-      if (currentMessage.user.id === this.props.user.id) {
+      if (currentMessage.user._id === this.props.user._id) {
         return null;
       }
       return (

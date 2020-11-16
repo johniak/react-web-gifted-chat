@@ -16,5 +16,5 @@ export function isSameDay(currentMessage = {}, diffMessage = {}) {
 }
 
 export function isSameUser(currentMessage = {}, diffMessage = {}) {
-  return !!(diffMessage.user && currentMessage.user && diffMessage.user.id === currentMessage.user.id);
+  return !!(diffMessage.user && currentMessage.user && diffMessage.user._id === currentMessage.user._id);
 }
