@@ -65,7 +65,7 @@ export default class MessageContainer extends React.PureComponent {
   }
 
   renderRow = ({ item, index }) => {
-    if (!item.id && item.id !== 0) {
+    if (!item._id && item._id !== 0) {
       console.warn('GiftedChat: `id` is missing for message', JSON.stringify(item));
     }
     if (!item.user) {
@@ -81,11 +81,11 @@ export default class MessageContainer extends React.PureComponent {
 
     const messageProps = {
       ...restProps,
-      key: item.id,
+      key: item._id,
       currentMessage: item,
       previousMessage,
       nextMessage,
-      position: item.user.id === this.props.user.id ? 'right' : 'left',
+      position: item.user._id === this.props.user._id ? 'right' : 'left',
       imageMessages,
     };
 
