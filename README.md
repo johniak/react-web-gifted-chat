@@ -1,5 +1,9 @@
 # Gifted Chat
 
+> **Project status:** This project is no longer supported or maintained.  
+> Thanks for all the stars, support, and kind words — it has been a great journey and a fun adventure.  
+> I'm glad the repo has been useful; feel free to use it as inspiration and a starting point for your next projects.
+
 Web fork of most complete chat UI for React Web (formerly known as Gifted Messenger).
 
 ## Demo is available [here](https://codesandbox.io/s/pw6zzl542x)
