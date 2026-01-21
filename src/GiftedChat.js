@@ -183,12 +183,8 @@ class GiftedChat extends React.Component {
     if (this._messageContainerRef === null) {
       return;
     }
-    this._messageContainerRef.scrollTo({
-      y: 0,
-      animated,
-    });
+    this._messageContainerRef.scrollTo({ top: 0, behavior: 'smooth' })
   }
-
 
   renderMessages() {
     return (
@@ -201,7 +197,7 @@ class GiftedChat extends React.Component {
           {...this.props}
           invertibleScrollViewProps={this.invertibleScrollViewProps}
           messages={this.getMessages()}
-          ref={component => this._messageContainerRef = component}
+          getRef={component => this._messageContainerRef = component}
         />
         {this.renderChatFooter()}
       </div>

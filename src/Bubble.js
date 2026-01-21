@@ -17,6 +17,26 @@ import { isSameUser, isSameDay } from './utils';
 import TouchableOpacity from './TouchableOpacity';
 
 export default class Bubble extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      mentionedBG: false
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.mentionedMsgId) {
+      this.setState({ mentionedBG: true })
+    } else {
+      this.setState({ mentionedBG: false })
+    }
+
+    setTimeout(() => {
+      this.setState({ mentionedBG: false })
+    }, 1000);
+
+  }
+
 
   onLongPress = () => {
     if (this.props.onLongPress) {
@@ -106,8 +126,8 @@ export default class Bubble extends React.Component {
     if (this.props.renderTicks) {
       return this.props.renderTicks(currentMessage);
     }
-    if (currentMessage.user.id !== this.props.user.id) {
-        return;
+    if (currentMessage.user._id !== this.props.user._id) {
+      return;
     }
     if (currentMessage.sent || currentMessage.received || currentMessage.pending) {
       return (
@@ -135,7 +155,7 @@ export default class Bubble extends React.Component {
   renderUsername() {
     const { currentMessage } = this.props;
     if (this.props.renderUsernameOnMessage) {
-      if (currentMessage.user.id === this.props.user.id) {
+      if (currentMessage.user._id === this.props.user._id) {
         return null;
       }
       return (
@@ -156,13 +176,14 @@ export default class Bubble extends React.Component {
 
   render() {
     return (
-      <View style={[styles[this.props.position].container, this.props.containerStyle[this.props.position]]}>
+      <View id={this.props.currentMessage._id} style={[styles[this.props.position].container, this.props.containerStyle[this.props.position]]}>
         <View
           style={[
             styles[this.props.position].wrapper,
             this.props.wrapperStyle[this.props.position],
             this.handleBubbleToNext(),
             this.handleBubbleToPrevious(),
+            ((this.props.mentionedMsgId == this.props.currentMessage._id) && this.state.mentionedBG) && { backgroundColor: "#8ad1be" },
           ]}
         >
           <TouchableOpacity
@@ -172,10 +193,10 @@ export default class Bubble extends React.Component {
             {...this.props.touchableProps}
           >
             <View>
-              {this.renderCustomView()}
               {this.renderMessageImage()}
               {this.renderMessageVideo()}
               {this.renderMessageText()}
+              {this.renderCustomView()}
               <View style={[styles[this.props.position].bottom, this.props.bottomContainerStyle[this.props.position]]}>
                 {this.renderUsername()}
                 {this.renderTime()}
@@ -187,7 +208,6 @@ export default class Bubble extends React.Component {
       </View>
     );
   }
-
 }
 
 const styles = {

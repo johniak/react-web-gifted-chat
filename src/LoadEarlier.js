@@ -6,11 +6,11 @@ import {
   ActivityIndicator,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
   ViewPropTypes,
 } from 'react-native';
 import Color from './Color';
+import TouchableOpacity from './TouchableOpacity';
 
 export default class LoadEarlier extends React.Component {
 
@@ -38,7 +38,7 @@ export default class LoadEarlier extends React.Component {
   render() {
     return (
       <TouchableOpacity
-        style={[styles.container, this.props.containerStyle]}
+        style={{...styles.container, ...this.props.containerStyle}}
         onPress={() => {
           if (this.props.onLoadEarlier) {
             this.props.onLoadEarlier();
@@ -46,6 +46,7 @@ export default class LoadEarlier extends React.Component {
         }}
         disabled={this.props.isLoadingEarlier === true}
         accessibilityTraits="button"
+	accessible
       >
         <View style={[styles.wrapper, this.props.wrapperStyle]}>
           {this.renderLoading()}
@@ -59,7 +60,7 @@ export default class LoadEarlier extends React.Component {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginTop: 5,
+    marginTop: 10,
     marginBottom: 10,
   },
   wrapper: {

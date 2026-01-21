@@ -45,24 +45,39 @@ export default class MessageText extends React.Component {
   onPhonePress(phone) {
     const options = ['Call', 'Text', 'Cancel'];
     const cancelButtonIndex = options.length - 1;
-    this.context.actionSheet().showActionSheetWithOptions({
-      options,
-      cancelButtonIndex,
-    },
-    (buttonIndex) => {
-      // switch (buttonIndex) {
-      //   case 0:
-      //     Communications.phonecall(phone, true);
-      //     break;
-      //   case 1:
-      //     Communications.text(phone);
-      //     break;
-      // }
-    });
+    // this.context.actionSheet().showActionSheetWithOptions({
+    //   options,
+    //   cancelButtonIndex,
+    // },
+    // (buttonIndex) => {
+    //   // switch (buttonIndex) {
+    //   //   case 0:
+    //   //     Communications.phonecall(phone, true);
+    //   //     break;
+    //   //   case 1:
+    //   //     Communications.text(phone);
+    //   //     break;
+    //   // }
+    // });
   }
 
   onEmailPress(email) {
     // Communications.email(email, null, null, null, null);
+  }
+
+  renderText = (matchingString, matches) => {
+    const { members, profile } = this.props; 
+    let name = matches[4]
+    if (profile && profile.username == name) {
+      name = profile.name
+    }
+    else {
+      let user = members.find(user=> user.id==matches[4]);
+      if(user){
+        name=user.display;
+      }
+    }
+    return `${matches[2]}${name}`;
   }
 
   render() {
@@ -77,6 +92,8 @@ export default class MessageText extends React.Component {
           ]}
           parse={[
             ...this.props.parsePatterns(linkStyle),
+
+            { type:'mention', style: linkStyle, onPress: null, renderText: this.renderText },
             { type: 'url', style: linkStyle, onPress: this.onUrlPress },
             { type: 'phone', style: linkStyle, onPress: this.onPhonePress },
             { type: 'email', style: linkStyle, onPress: this.onEmailPress },

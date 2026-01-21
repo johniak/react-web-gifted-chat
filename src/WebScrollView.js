@@ -4,9 +4,14 @@ import React, { Component } from 'react';
 import { FlatList, View, StyleSheet, Keyboard, TouchableOpacity, Text } from 'react-native';
 
 export default class WebScrollView extends Component {
-  renderItem =(item, index) => {
+  constructor(props) {
+    super(props)
+  }
+
+  renderItem = (item, index) => {
     const { renderItem } = this.props;
-    return renderItem({ item, index });
+    const msgId = this.props.mentionedMsgId
+    return renderItem({ item, index , msgId});
   }
 
   render() {
@@ -16,7 +21,10 @@ export default class WebScrollView extends Component {
       messages = data.slice().reverse();
     }
     return (
-      <div style={styles.container}>
+      <div
+        ref={this.props.forwardRef}
+        style={styles.container}
+      >
         {ListHeaderComponent()}
         {messages.map(this.renderItem)}
         {ListFooterComponent()}
@@ -41,8 +49,8 @@ const styles = {
 WebScrollView.defaultProps = {
   data: [],
   extraData: {},
-  ListHeaderComponent: () => {},
-  ListFooterComponent: () => {},
+  ListHeaderComponent: () => { },
+  ListFooterComponent: () => { },
   inverted: false,
 };
 

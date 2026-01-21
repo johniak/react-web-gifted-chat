@@ -22,6 +22,7 @@
   "homepage": "https://github.com/johniak/react-web-gifted-chat#readme",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx",
+    "prepublish": "export BABEL_ENV='production' && rm -rf ./dist && mkdir dist &&  rollup -c -i src/index.js -o dist/index.js",
     "compile": "export BABEL_ENV='production' && rm -rf ./dist && mkdir dist &&  rollup -c -i src/index.js -o dist/index.js"
   },
   "devDependencies": {
